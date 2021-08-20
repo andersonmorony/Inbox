@@ -18,7 +18,20 @@ beforeEach( async () => {
 });
 
 describe('Inbox', () => {
+    
     it('Deploy one contact', () => {
-        console.log(inbox);
+        assert.ok(inbox.options.address);
     });
+
+    it('has a message in the contract', async () => {
+        const message = await inbox.methods.message().call();
+        assert.equal(message, 'Hi there');
+    });
+
+    it('Update message', async () => {
+        await inbox.methods.setMessage('Bye there').send({ from: accounts[0] });
+        const message = await inbox.methods.message().call();
+        assert.equal(message, 'Bye there');
+    })
+
 });
