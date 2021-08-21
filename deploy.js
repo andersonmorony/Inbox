@@ -1,10 +1,10 @@
-const HdwalletProvider = require('truffle-hdwallet-provider');
+const HDwalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 const { interface, bytecode} = require('./compile');
 
-const provider = new HdwalletProvider(
+const provider = new HDwalletProvider(
     'radio exercise patch debate advice result fade egg often food drum anger',
-    'https://rinkeby.infura.io/v3/c32936b4e646416baf2b0b079ad15c3d'
+    'https://ropsten.infura.io/v3/9d5a912049a54e91bbf6885f372b03a0'
 );
 
 const web3 = new Web3(provider);
@@ -22,13 +22,10 @@ const deploy = async () =>{
         .send({
             gas: '1000000',
             from: accounts[0],
-            gasPrice: '40000000'
+            gasPrice: '5000000000'
         });
 
     console.log('Contract deployed to', result.options.address);
 
 };
 deploy();
-
-
-
